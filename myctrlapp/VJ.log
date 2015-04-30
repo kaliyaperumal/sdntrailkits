@@ -1,0 +1,212 @@
+Apache Maven 3.2.1 (ea8b2b07643dbb1b84b6d16e1f08391b666bc1e9; 2014-02-14T12:37:52-05:00)
+Maven home: /apps/opt/apache-maven-3.2.1
+Java version: 1.7.0_75, vendor: Oracle Corporation
+Java home: /apps/opt/jdk1.7.0_75/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "2.6.32-431.20.3.el6.x86_64", arch: "amd64", family: "unix"
+[INFO] Error stacktraces are turned on.
+[DEBUG] Reading global settings from /apps/opt/apache-maven-3.2.1/conf/settings.xml
+[DEBUG] Reading user settings from /home/sdntest/.m2/settings.xml
+[DEBUG] Using local repository at /home/sdntest/.m2/repository
+[DEBUG] Using manager EnhancedLocalRepositoryManager with priority 10.0 for /home/sdntest/.m2/repository
+[INFO] Scanning for projects...
+[DEBUG] Using connector WagonRepositoryConnector with priority 0.0 for http://repo.maven.apache.org/maven2
+Downloading: http://repo.maven.apache.org/maven2/org/apache/felix/maven-bundle-plugin/2.4.0/maven-bundle-plugin-2.4.0.pom
+[DEBUG] Writing tracking file /home/sdntest/.m2/repository/org/apache/felix/maven-bundle-plugin/2.4.0/maven-bundle-plugin-2.4.0.pom.lastUpdated
+[DEBUG] Looking up lifecyle mappings for packaging bundle from ClassRealm[plexus.core, parent: null]
+[ERROR] The build could not read 1 project -> [Help 1]
+org.apache.maven.project.ProjectBuildingException: Some problems were encountered while processing the POMs:
+[ERROR] Unresolveable build extension: Plugin org.apache.felix:maven-bundle-plugin:2.4.0 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.felix:maven-bundle-plugin:jar:2.4.0 @ 
+[ERROR] Unknown packaging: bundle @ line 7, column 16
+
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:364)
+	at org.apache.maven.DefaultMaven.collectProjects(DefaultMaven.java:672)
+	at org.apache.maven.DefaultMaven.getProjectsForMavenReactor(DefaultMaven.java:663)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:250)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:155)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:584)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:213)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+[ERROR]   
+[ERROR]   The project trial:myctrlapp:0.1 (/home/sdntest/myctrlapp/pom.xml) has 2 errors
+[ERROR]     Unresolveable build extension: Plugin org.apache.felix:maven-bundle-plugin:2.4.0 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.felix:maven-bundle-plugin:jar:2.4.0: Could not transfer artifact org.apache.felix:maven-bundle-plugin:pom:2.4.0 from/to central (http://repo.maven.apache.org/maven2): Connect to repo.maven.apache.org:80 [repo.maven.apache.org/23.235.46.215] failed: Connection timed out -> [Help 2]
+org.apache.maven.plugin.PluginResolutionException: Plugin org.apache.felix:maven-bundle-plugin:2.4.0 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.felix:maven-bundle-plugin:jar:2.4.0
+	at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve(DefaultPluginDependenciesResolver.java:204)
+	at org.apache.maven.project.DefaultProjectBuildingHelper.resolveExtensionArtifacts(DefaultProjectBuildingHelper.java:380)
+	at org.apache.maven.project.DefaultProjectBuildingHelper.createProjectRealm(DefaultProjectBuildingHelper.java:239)
+	at org.apache.maven.project.DefaultModelBuildingListener.buildExtensionsAssembled(DefaultModelBuildingListener.java:110)
+	at org.apache.maven.model.building.ModelBuildingEventCatapult$1.fire(ModelBuildingEventCatapult.java:43)
+	at org.apache.maven.model.building.DefaultModelBuilder.fireEvent(DefaultModelBuilder.java:1069)
+	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:385)
+	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:368)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:561)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:353)
+	at org.apache.maven.DefaultMaven.collectProjects(DefaultMaven.java:672)
+	at org.apache.maven.DefaultMaven.getProjectsForMavenReactor(DefaultMaven.java:663)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:250)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:155)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:584)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:213)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+Caused by: org.eclipse.aether.collection.DependencyCollectionException: Failed to read artifact descriptor for org.apache.felix:maven-bundle-plugin:jar:2.4.0
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:218)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.collectDependencies(DefaultRepositorySystem.java:317)
+	at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve(DefaultPluginDependenciesResolver.java:192)
+	... 24 more
+Caused by: org.eclipse.aether.resolution.ArtifactDescriptorException: Failed to read artifact descriptor for org.apache.felix:maven-bundle-plugin:jar:2.4.0
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:335)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor(DefaultArtifactDescriptorReader.java:217)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:212)
+	... 26 more
+Caused by: org.eclipse.aether.resolution.ArtifactResolutionException: Could not transfer artifact org.apache.felix:maven-bundle-plugin:pom:2.4.0 from/to central (http://repo.maven.apache.org/maven2): Connect to repo.maven.apache.org:80 [repo.maven.apache.org/23.235.46.215] failed: Connection timed out
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:459)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:262)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:239)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:320)
+	... 28 more
+Caused by: org.eclipse.aether.transfer.ArtifactTransferException: Could not transfer artifact org.apache.felix:maven-bundle-plugin:pom:2.4.0 from/to central (http://repo.maven.apache.org/maven2): Connect to repo.maven.apache.org:80 [repo.maven.apache.org/23.235.46.215] failed: Connection timed out
+	at org.eclipse.aether.connector.wagon.WagonRepositoryConnector$6.wrap(WagonRepositoryConnector.java:1016)
+	at org.eclipse.aether.connector.wagon.WagonRepositoryConnector$6.wrap(WagonRepositoryConnector.java:1004)
+	at org.eclipse.aether.connector.wagon.WagonRepositoryConnector$GetTask.run(WagonRepositoryConnector.java:725)
+	at org.eclipse.aether.util.concurrency.RunnableErrorForwarder$1.run(RunnableErrorForwarder.java:67)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.maven.wagon.TransferFailedException: Connect to repo.maven.apache.org:80 [repo.maven.apache.org/23.235.46.215] failed: Connection timed out
+	at org.apache.maven.wagon.providers.http.AbstractHttpClientWagon.fillInputData(AbstractHttpClientWagon.java:935)
+	at org.apache.maven.wagon.StreamWagon.getInputStream(StreamWagon.java:116)
+	at org.apache.maven.wagon.StreamWagon.getIfNewer(StreamWagon.java:88)
+	at org.apache.maven.wagon.StreamWagon.get(StreamWagon.java:61)
+	at org.eclipse.aether.connector.wagon.WagonRepositoryConnector$GetTask.run(WagonRepositoryConnector.java:660)
+	... 4 more
+Caused by: org.apache.maven.wagon.providers.http.httpclient.conn.ConnectTimeoutException: Connect to repo.maven.apache.org:80 [repo.maven.apache.org/23.235.46.215] failed: Connection timed out
+	at org.apache.maven.wagon.providers.http.httpclient.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:136)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:314)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:357)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.execchain.MainClientExec.execute(MainClientExec.java:218)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.execchain.ProtocolExec.execute(ProtocolExec.java:194)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.execchain.RetryExec.execute(RetryExec.java:85)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.execchain.RedirectExec.execute(RedirectExec.java:108)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:186)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.maven.wagon.providers.http.AbstractHttpClientWagon.execute(AbstractHttpClientWagon.java:756)
+	at org.apache.maven.wagon.providers.http.AbstractHttpClientWagon.fillInputData(AbstractHttpClientWagon.java:854)
+	... 8 more
+Caused by: java.net.ConnectException: Connection timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at org.apache.maven.wagon.providers.http.httpclient.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:72)
+	at org.apache.maven.wagon.providers.http.httpclient.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:118)
+	... 18 more
+[ERROR]     Unknown packaging: bundle @ line 7, column 16
+[ERROR] 
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+[ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
+Apache Maven 3.2.1 (ea8b2b07643dbb1b84b6d16e1f08391b666bc1e9; 2014-02-14T12:37:52-05:00)
+Maven home: /apps/opt/apache-maven-3.2.1
+Java version: 1.7.0_75, vendor: Oracle Corporation
+Java home: /apps/opt/jdk1.7.0_75/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "2.6.32-431.20.3.el6.x86_64", arch: "amd64", family: "unix"
+[INFO] Error stacktraces are turned on.
+[DEBUG] Reading global settings from /apps/opt/apache-maven-3.2.1/conf/settings.xml
+[DEBUG] Reading user settings from /home/sdntest/.m2/settings.xml
+[DEBUG] Using local repository at /home/sdntest/.m2/repository
+[DEBUG] Using manager EnhancedLocalRepositoryManager with priority 10.0 for /home/sdntest/.m2/repository
+[INFO] Scanning for projects...
+[WARNING] The POM for org.apache.felix:maven-bundle-plugin:jar:2.4.0 is missing, no dependency information available
+[DEBUG] Dependency collection stats: {ConflictMarker.analyzeTime=1, ConflictMarker.markTime=0, ConflictMarker.nodeCount=1, ConflictIdSorter.graphTime=1, ConflictIdSorter.topsortTime=0, ConflictIdSorter.conflictIdCount=1, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=3, ConflictResolver.conflictItemCount=1, DefaultDependencyCollector.collectTime=10, DefaultDependencyCollector.transformTime=6}
+[DEBUG] org.apache.felix:maven-bundle-plugin:jar:2.4.0:
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:1.1:runtime
+[DEBUG] Looking up lifecyle mappings for packaging bundle from ClassRealm[plexus.core, parent: null]
+[ERROR] The build could not read 1 project -> [Help 1]
+org.apache.maven.project.ProjectBuildingException: Some problems were encountered while processing the POMs:
+[ERROR] Unresolveable build extension: Plugin org.apache.felix:maven-bundle-plugin:2.4.0 or one of its dependencies could not be resolved: The following artifacts could not be resolved: org.apache.felix:maven-bundle-plugin:jar:2.4.0, org.codehaus.plexus:plexus-utils:jar:1.1: Cannot access central (http://repo.maven.apache.org/maven2) in offline mode and the artifact org.apache.felix:maven-bundle-plugin:jar:2.4.0 has not been downloaded from it before. @ 
+[ERROR] Unknown packaging: bundle @ line 7, column 16
+
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:364)
+	at org.apache.maven.DefaultMaven.collectProjects(DefaultMaven.java:672)
+	at org.apache.maven.DefaultMaven.getProjectsForMavenReactor(DefaultMaven.java:663)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:250)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:155)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:584)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:213)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+[ERROR]   
+[ERROR]   The project trial:myctrlapp:0.1 (/home/sdntest/myctrlapp/pom.xml) has 2 errors
+[ERROR]     Unresolveable build extension: Plugin org.apache.felix:maven-bundle-plugin:2.4.0 or one of its dependencies could not be resolved: The following artifacts could not be resolved: org.apache.felix:maven-bundle-plugin:jar:2.4.0, org.codehaus.plexus:plexus-utils:jar:1.1: Cannot access central (http://repo.maven.apache.org/maven2) in offline mode and the artifact org.apache.felix:maven-bundle-plugin:jar:2.4.0 has not been downloaded from it before. -> [Help 2]
+org.apache.maven.plugin.PluginResolutionException: Plugin org.apache.felix:maven-bundle-plugin:2.4.0 or one of its dependencies could not be resolved: The following artifacts could not be resolved: org.apache.felix:maven-bundle-plugin:jar:2.4.0, org.codehaus.plexus:plexus-utils:jar:1.1: Cannot access central (http://repo.maven.apache.org/maven2) in offline mode and the artifact org.apache.felix:maven-bundle-plugin:jar:2.4.0 has not been downloaded from it before.
+	at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve(DefaultPluginDependenciesResolver.java:208)
+	at org.apache.maven.project.DefaultProjectBuildingHelper.resolveExtensionArtifacts(DefaultProjectBuildingHelper.java:380)
+	at org.apache.maven.project.DefaultProjectBuildingHelper.createProjectRealm(DefaultProjectBuildingHelper.java:239)
+	at org.apache.maven.project.DefaultModelBuildingListener.buildExtensionsAssembled(DefaultModelBuildingListener.java:110)
+	at org.apache.maven.model.building.ModelBuildingEventCatapult$1.fire(ModelBuildingEventCatapult.java:43)
+	at org.apache.maven.model.building.DefaultModelBuilder.fireEvent(DefaultModelBuilder.java:1069)
+	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:385)
+	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:368)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:561)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:353)
+	at org.apache.maven.DefaultMaven.collectProjects(DefaultMaven.java:672)
+	at org.apache.maven.DefaultMaven.getProjectsForMavenReactor(DefaultMaven.java:663)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:250)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:155)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:584)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:213)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+Caused by: org.eclipse.aether.resolution.ArtifactResolutionException: The following artifacts could not be resolved: org.apache.felix:maven-bundle-plugin:jar:2.4.0, org.codehaus.plexus:plexus-utils:jar:1.1: Cannot access central (http://repo.maven.apache.org/maven2) in offline mode and the artifact org.apache.felix:maven-bundle-plugin:jar:2.4.0 has not been downloaded from it before.
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:459)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:262)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.resolveDependencies(DefaultRepositorySystem.java:367)
+	at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve(DefaultPluginDependenciesResolver.java:200)
+	... 24 more
+Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Cannot access central (http://repo.maven.apache.org/maven2) in offline mode and the artifact org.apache.felix:maven-bundle-plugin:jar:2.4.0 has not been downloaded from it before.
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:406)
+	... 27 more
+Caused by: org.eclipse.aether.transfer.RepositoryOfflineException: Cannot access central (http://repo.maven.apache.org/maven2) in offline mode
+	at org.eclipse.aether.internal.impl.DefaultOfflineController.checkOffline(DefaultOfflineController.java:83)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:402)
+	... 27 more
+[ERROR]     Unknown packaging: bundle @ line 7, column 16
+[ERROR] 
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+[ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
