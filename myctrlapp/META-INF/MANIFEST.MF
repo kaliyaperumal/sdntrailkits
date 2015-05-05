@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1429263616921
+Build-Jdk: 1.7.0_75
+Built-By: root
+Bundle-Activator: trial.myctrlapp.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: myctrlapp
+Bundle-SymbolicName: trial.myctrlapp
+Bundle-Version: 0.1.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: trial.myctrlapp;uses:="org.apache.felix.dm,org.opendayli
+ ght.controller.sal.core,org.opendaylight.controller.sal.packet";version
+ ="0.1.0"
+Import-Package: org.apache.felix.dm;version="[3.0,4)",org.opendaylight.c
+ ontroller.sal.core;version="[0.7,1)",org.opendaylight.controller.sal.pa
+ cket;version="[0.7,1)",org.slf4j;version="[1.7,2)"
+Tool: Bnd-2.1.0.20130426-122213

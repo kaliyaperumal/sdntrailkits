@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1428474219326
+Build-Jdk: 1.7.0_75
+Built-By: sdntest
+Bundle-Activator: lbtrial.lbrouting.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: lbrouting
+Bundle-SymbolicName: lbtrial.lbrouting
+Bundle-Version: 0.1.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: lbtrial.lbrouting;uses:="org.apache.felix.dm,org.openday
+ light.controller.sal.core,org.opendaylight.controller.sal.reader,org.op
+ endaylight.controller.sal.routing,org.opendaylight.controller.sal.topol
+ ogy,org.opendaylight.controller.switchmanager,org.opendaylight.controll
+ er.topologymanager";version="0.1.0"
+Import-Package: edu.uci.ics.jung.algorithms.shortestpath,edu.uci.ics.jun
+ g.graph,edu.uci.ics.jung.graph.util,org.apache.commons.collections15,or
+ g.apache.felix.dm;version="[3.0,4)",org.opendaylight.controller.sal.cor
+ e;version="[0.7,1)",org.opendaylight.controller.sal.reader;version="[0.
+ 7,1)",org.opendaylight.controller.sal.routing;version="[0.7,1)",org.ope
+ ndaylight.controller.sal.topology;version="[0.7,1)",org.opendaylight.co
+ ntroller.statisticsmanager.internal,org.opendaylight.controller.switchm
+ anager;version="[0.7,1)",org.opendaylight.controller.topologymanager;ve
+ rsion="[0.4,1)",org.slf4j;version="[1.7,2)"
+Tool: Bnd-2.1.0.20130426-122213
