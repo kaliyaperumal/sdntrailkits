@@ -1,0 +1,23 @@
+  400  cd 
+  401  #Get Jdk 1.8 skip if already present
+  403  sudo apt-get install software-properties-common -y
+  404  sudo add-apt-repository ppa:webupd8team/java -y
+  405  sudo apt-get update
+  406  sudo apt-get install oracle-java8-installer oracle-java8-set-default -y
+  411  cd Downloads/
+  412  wget http://archive.apache.org/dist/karaf/3.0.5/apache-karaf-3.0.5.tar.gz
+  413  wget http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+  385  mkdir ONOS
+  414  tar -zxvf apache-karaf-3.0.5.tar.gz -C ~/ONOS/
+  416  tar -zxvf apache-maven-3.3.9-bin.tar.gz -C ~/ONOS/
+  418  cd ONOS/
+  423  #scp 10.76.190.80:~/ONOS/onos_setup.sh .
+  425  vi onos_setup.sh 
+  428  # make changes to suit your env 
+  429  mkdir onos1.5
+  431  cd onos1.5/
+  432  git clone https://gerrit.onosproject.org/onos
+  439  . ~/ONOS/onos_setup.sh 
+  441  mvn clean install
+  443  mvn clean install -DskipTests
+  444  ok clean
