@@ -1,0 +1,17 @@
+{
+    "vnf": {
+        "attributes": {
+            "config": null,
+            "heat_template": "description: OpenWRT Router\nheat_template_version: 2013-05-23\noutputs:\n  mgmt_ip-vdu1:\n    description: management ip address\n    value:\n      get_attr: [vdu1-net_mgmt-port, fixed_ips, 0, ip_address]\nresources:\n  vdu1:\n    properties:\n      availability_zone: nova\n      config_drive: true\n      flavor: m1.tiny\n      image: openwrt-snapshotimage\n      metadata: {param0: key0, param1: key1}\n      networks:\n      - port: {get_resource: vdu1-net_mgmt-port}\n      - {network: net1}\n    type: OS::Nova::Server\n  vdu1-net_mgmt-port:\n    properties:\n      fixed_ips: []\n      network: net_mgmt\n      port_security_enabled: false\n    type: OS::Neutron::Port\n",
+            "monitoring_policy": "{\"vdus\": {}}",
+            "param_values": null
+        },
+        "description": "OpenWRT Router",
+        "id": "f6717bb2-9fc1-40ff-9f92-3245f6852dc7",
+        "instance_id": "c39b167e-f2cb-4d3d-b594-0f032f2a37e6",
+        "mgmt_url": "{\"vdu1\": \"192.168.120.26\"}",
+        "name": "VzVM4242375313937677945x",
+        "status": "ACTIVE",
+        "tenant_id": "8c05a1e0878a4b26ba4ceb808fef42b1"
+    }
+}
