@@ -21,10 +21,11 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import org.apache.felix.scr.annotations.*;
+import org.clapper.util.misc.FileHashMap;
 import org.json.simple.JSONArray;
-import org.onosproject.net.device.DeviceEvent;
-import org.onosproject.net.device.DeviceListener;
-import org.onosproject.net.device.DeviceService;
+import org.onosproject.core.CoreService;
+import org.onosproject.net.Device;
+import org.onosproject.net.device.*;
 import org.onosproject.net.host.HostEvent;
 import org.onosproject.net.host.HostListener;
 import org.onosproject.net.host.HostService;
@@ -35,8 +36,7 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.StringTokenizer;
+import java.util.*;
 
 
 import java.net.MalformedURLException;
@@ -52,7 +52,8 @@ import org.json.simple.parser.JSONParser;
 @Component(immediate = true)
 public class AppComponent {
     
-    static boolean devicecreated = false;
+
+    FileHashMap<String,String> fhm = null;
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     private DeviceListener deviceListener;
@@ -63,6 +64,16 @@ public class AppComponent {
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
     protected HostService hostService;
+
+    @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
+    protected CoreService coreService;
+
+     @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
+    protected DeviceAdminService adminService;
+
+    @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
+    protected DeviceProviderRegistry providerRegistry;
+
 
     private HashMap<String,String> appConfig = new HashMap<String, String>();
     @Activate
@@ -79,6 +90,9 @@ public class AppComponent {
         appConfig.put("tacker.domain", "demo");
         appConfig.put("tacker.username","admin");
         appConfig.put("tacker.password","devstack");
+        appConfig.put("tacker.vnfdname","openwrt-cc-router-custom-2-vnfd");
+
+
 
         appConfig.put("keystone.url.tenants", "http://10.76.190.80:5000/v2.0/tenants");
         appConfig.put("service.username", "user1");
@@ -94,13 +108,28 @@ public class AppComponent {
         log.info("Reading config file");
         readAppConfig();
 
-
+        try {
+            fhm = new FileHashMap<String,String>("vcpe",0);
+            fhm.put("Hello","Hello");
+            fhm.save();
+        }
+        catch (Exception ex)
+        {
+            log.error("Exception during opening FileHashMap",ex);
+        }
+        getToken("tacker");
+        getVNFDS();
         log.info("Started");
     }
 
     @Deactivate
     protected void deactivate() {
         deviceService.removeListener(deviceListener);
+        try {
+            fhm.close();
+        }
+        catch (Exception ex){log.error("Error during FileHashMap closing",ex);}
+
         log.info("Stopped");
     }
 
@@ -111,39 +140,64 @@ public class AppComponent {
             log.info(event.toString());
             switch (event.type()) {
                 case DEVICE_ADDED:
-                    log.info("DEVICE Added, getting Tacker Token");
+ /*                   log.info("DEVICE Added, getting Tacker Token");
                     log.debug("Connecting to:" + appConfig.get("keystone.url"));
                     getToken("tacker");
                     getVNFDS();
                     createVNF();
-
+*/
                     break;
                 case DEVICE_AVAILABILITY_CHANGED:
                 case PORT_STATS_UPDATED:
-                    log.info("DEVICE Availablity Changed, getting Tacker Token");
-                    if (!devicecreated)
+
+
+                    Iterable<Device> list = deviceService.getAvailableDevices();
+                    log.info("Listing all devices");
+                    for (Device d : list)
                     {
-                         log.info("Connecting to:" + appConfig.get("keystone.url"));
-                         getToken("tacker");
-                         getVNFDS();
-                         log.info("Creating Device");
-                         createVNF();
-                         log.info("Waiting for device to be active");
-                         try
-                         {
-                           Thread.sleep(60000);
-                         }
-                         catch (InterruptedException ex){}
-                         String ipAddress = getCreatedInstanceIP();
-                         log.info("Device IP address");
-                         log.info("Device Serial Number:" + event.subject().serialNumber());
-                         execSSHonRouter(appConfig.get("openwrt.user"),appConfig.get("openwrt.password"),ipAddress);
-                         devicecreated = true;
+                        log.info(d.toString());
+                        log.info("Device MAC address"+ d.id().toString());
+                        if (fhm != null && fhm.get(d.id().toString()) == null)
+                        {
+                            log.info("Connecting to:" + appConfig.get("keystone.url"));
+                            getToken("tacker");
+                            //getVNFDS();
+                            log.info("Creating Device");
+                            String vnfid = createVNF();
+                            fhm.put(d.id().toString(),vnfid);
+                            log.info("Created Device with vnfid:"+ vnfid);
+                        }
+                        else
+                        {
+                            log.info("Found Device  Hash table:"+ fhm.get(d.id().toString()));
+                            String vnfData = fhm.get(d.id().toString());
+                            StringTokenizer stz = new StringTokenizer(vnfData,"|");
+                            if (stz.countTokens() == 1) // We don't have the IP address of the VNF
+                            {
+                                log.info("Looking for management ip for "+ vnfData);
+                                getToken("tacker");
+                                String ip = getVNFMgmtIP(vnfData);
+                                if (ip != null)
+                                {
+                                    log.info ("Found mgmt IP for vnfid:" + vnfData + " mgmt ip:" + ip);
+                                    fhm.put(d.id().toString(),vnfData+'|'+ ip);
+                                }
+                            }
+                        }
                     }
+                    if (fhm != null) {
+                        try {
+                            fhm.save();
+                        } catch (Exception ex) {
+                            log.error("Exception during Closing FileHashMap", ex);
+                            break;
+                        }
+                    }
+
                     break;
                 // TODO other cases
                 case DEVICE_UPDATED:
-                    log.info("DEVICE Update, getting Tacker Token");
+   //                 log.info("DEVICE Update, getting Tacker Token");
                     //getToken("tacker");
                     //getVNFDS();
                    // createVNF();
@@ -193,8 +247,19 @@ public class AppComponent {
             JSONParser parser = new JSONParser();
             JSONObject vfnd = (JSONObject)parser.parse(buf.toString());
             JSONArray vfnds = (JSONArray)vfnd.get("vnfds");
-            JSONObject vfnd1 = (JSONObject)vfnds.get(0);
-            String vnfid = (String) vfnd1.get("id");
+            String vnfid = null;
+            for (int i=0; i< vfnds.size();i++)
+            {
+                JSONObject vfnd1 = (JSONObject)vfnds.get(i);
+                String vnfname = (String) vfnd1.get("name");
+                if (vnfname.equals(appConfig.get("tacker.vnfdname"))) {
+                    vnfid = (String) vfnd1.get("id");
+                }
+             }
+            if (vnfid == null)
+            {
+                log.error("No vnf id found for:"+ appConfig.get("tacker.vnfdname"));
+            }
             appConfig.put("vnfid",vnfid);
             log.info("VNF ID:" + vnfid);
             conn.disconnect();
@@ -212,8 +277,9 @@ public class AppComponent {
         }
 
     }
-    private void createVNF()
+    private String createVNF()
     {
+        String vnfid = null;
         try {
             URL url = new URL(appConfig.get("tacker.url")+"/vnfs.json");
             log.info("Connecting to:" + url.toString());
@@ -244,7 +310,10 @@ public class AppComponent {
             while ((output = br.readLine()) != null) {
                 buf.append(output);
             }
-
+            JSONParser parser = new JSONParser();
+            JSONObject vnfInfo = (JSONObject)parser.parse(buf.toString());
+            JSONObject vnf = (JSONObject)vnfInfo.get("vnf");
+            vnfid = (String)vnf.get("id");
             log.info(buf.toString());
 
             conn.disconnect();
@@ -257,9 +326,69 @@ public class AppComponent {
 
             log.error ("IOException", e);
         }
-
+        catch (ParseException e) {
+            log.error ("ParseException", e);
+        }
+        return vnfid;
     }
 
+    private String getVNFMgmtIP(String vnfId)
+    {
+        String ipAddress = null;
+        try {
+
+            log.info("URL:"+ appConfig.get("tacker.url")+ "/vnfs/"+ vnfId + ".json");
+            URL url = new URL(appConfig.get("tacker.url")+ "/vnfs/"+ vnfId + ".json");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("User-Agent", "python-tackerclient");
+            conn.setRequestProperty("X-Auth-Token",
+                    (String) appConfig.get("tacker.token"));
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            StringBuffer buf = new StringBuffer();
+
+            while ((output = br.readLine()) != null) {
+                buf.append(output);
+            }
+
+            JSONParser parser = new JSONParser();
+            JSONObject vnfInfo = (JSONObject)parser.parse(buf.toString());
+            JSONObject vnf = (JSONObject)vnfInfo.get("vnf");
+
+            String status = (String) vnf.get("status");
+            String mgmt = (String) vnf.get("mgmt_url");
+            if (status.equals("ACTIVE") && mgmt != null) {
+
+                String piece[] = mgmt.split("\"");
+                if (piece.length > 4) {
+                    ipAddress = piece[3];
+                }
+            }
+            conn.disconnect();
+            } catch (MalformedURLException e) {
+
+                log.error("Malformed", e);
+
+            } catch (IOException e) {
+
+                log.error ("IOException", e);
+            }
+            catch (ParseException e) {
+                log.error ("ParseException", e);
+            }
+
+        return ipAddress;
+    }
 
 
     private class InnerHostListener implements HostListener {

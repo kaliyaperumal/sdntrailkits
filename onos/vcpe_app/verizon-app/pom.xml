@@ -21,22 +21,21 @@
     <version>1.5.0-SNAPSHOT</version>
   </parent>
 
-    <groupId>com.verizon.onosapp</groupId>
+    <groupId>org.onosproject</groupId>
     <artifactId>verizon-app</artifactId>
     <version>1.5.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
-
-    <description>ONOS OSGi bundle archetype</description>
+    <description>Verizon ONOS Activation App</description>
     <url>http://onosproject.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <onos.version>1.5.0-SNAPSHOT</onos.version>
-        <onos.app.name>com.verizon.onosapp</onos.app.name>
+        <onos.app.name>org.onosproject.verizon</onos.app.name>
         <onos.app.origin>Verizon</onos.app.origin>
         <onos.app.category>default</onos.app.category>
         <onos.app.url>http://onosproject.org</onos.app.url>
-        <onos.app.readme>ONOS OSGi bundle archetype.</onos.app.readme>
+        <onos.app.readme>Verizon ONOS Activation App</onos.app.readme>
     </properties>
 
     <dependencies>
@@ -84,6 +83,11 @@
             <version>0.1.53</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.clapper</groupId>
+            <artifactId>javautil</artifactId>
+            <version>3.1.1</version>
+        </dependency>
 
     </dependencies>
 
