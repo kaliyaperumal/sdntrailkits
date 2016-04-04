@@ -7,10 +7,12 @@
   411  cd Downloads/
   412  wget http://archive.apache.org/dist/karaf/3.0.5/apache-karaf-3.0.5.tar.gz
   413  wget http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+  414  cd ..
   385  mkdir ONOS
+  386  cd DownLoads/
   414  tar -zxvf apache-karaf-3.0.5.tar.gz -C ~/ONOS/
   416  tar -zxvf apache-maven-3.3.9-bin.tar.gz -C ~/ONOS/
-  418  cd ONOS/
+  418  cd ../ONOS/
   423  #scp 10.76.190.80:~/ONOS/onos_setup.sh .
   425  vi onos_setup.sh 
   428  # make changes to suit your env 
