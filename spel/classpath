@@ -1,0 +1,9 @@
+export CLASSPATH=/home/verizon/dt4j-1.0.5/dt4j-1.0.5.jar:.
+export CLASSPATH=$CLASSPATH:/home/verizon/dt4j-1.0.5/lib/poi-3.9.jar
+export CLASSPATH=$CLASSPATH:/home/verizon/dt4j-1.0.5/lib/poi-ooxml-3.9.jar
+export CLASSPATH=$CLASSPATH:/home/verizon/dt4j-1.0.5/lib/poi-ooxml-schemas-3.9.jar
+export CLASSPATH=$CLASSPATH:/home/verizon/dt4j-1.0.5/lib/xmlbeans-2.3.0.jar
+export CLASSPATH=$CLASSPATH:/home/verizon/dt4j-1.0.5/lib/dom4j-1.6.1.jar
+export CLASSPATH=$CLASSPATH:/home/verizon/dt4j-1.0.5/lib/spring-expression-3.0.5.RELEASE.jar
+export CLASSPATH=$CLASSPATH:/home/verizon/dt4j-1.0.5/lib/spring-core-3.0.5.RELEASE.jar:/home/verizon/dt4j-1.0.5/lib/spring-asm-3.0.5.RELEASE.jar
+export CLASSPATH=$CLASSPATH:/home/verizon/dt4j-1.0.5/lib/commons-logging-1.1.1.jar
