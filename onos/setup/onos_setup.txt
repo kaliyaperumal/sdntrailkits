@@ -23,3 +23,14 @@
   441  mvn clean install
   443  mvn clean install -DskipTests
   444  ok clean
+  
+  
+  ### Creating the ONOS Application using Archetype
+  
+  ####
+  
+  ### Adding javautil to maven repository
+  
+  mvn.install.javautils 
+    mvn install:install-file -Dfile=javautil.jar -DgroupId=org.clapper \
+        -DartifactId=javautil -Dversion=3.1.1 -Dpackaging=jar  
